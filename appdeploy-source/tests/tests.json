@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Open dashboard and generate furniture seat codes",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "dashboard overview",
+      "inventory metrics",
+      "stock attention",
+      "furniture seat-code generation",
+      "Code 128 label rendering",
+      "furniture code Excel export"
+    ],
+    "description": "Checks the overview remains usable and the new furniture coding workflow saves seat-only codes with printable barcode labels.",
+    "steps": [
+      "Open the app dashboard and review the inventory overview",
+      "Open Furniture coding",
+      "Choose G8, stream N, chair, 3 seats and Good condition",
+      "Generate and save codes",
+      "Verify HPS-G8-N-CH-01, HPS-G8-N-CH-02 and HPS-G8-N-CH-03 appear without learner names or admission numbers",
+      "Export the code register to Excel",
+      "Print labels or save the print dialog output as PDF"
+    ],
+    "expected": "Dashboard metrics remain visible and the furniture register contains the three seat codes, Code 128 labels and an Excel export action."
+  },
+  {
+    "name": "Add inventory item and validate required fields",
+    "viewport": "desktop",
+    "covers": [
+      "inventory create",
+      "required field validation"
+    ],
+    "description": "Checks item form validation and creation.",
+    "steps": [
+      "Open Add inventory",
+      "Submit without a name",
+      "Enter required fields and save"
+    ],
+    "expected": "An empty name is rejected and a completed item can be added."
+  },
+  {
+    "name": "Record barcode issue and block insufficient stock",
+    "viewport": "desktop",
+    "covers": [
+      "barcode issue and return",
+      "stock quantity guardrail",
+      "movement log"
+    ],
+    "description": "Checks barcode issue tracking and insufficient-stock guardrail.",
+    "setup": [
+      "Ensure BK-G7-MATH-001 exists"
+    ],
+    "steps": [
+      "Open Issue & return",
+      "Try to issue 999 units",
+      "Retry with an available quantity"
+    ],
+    "expected": "Oversized issues are rejected and valid transactions are recorded."
+  },
+  {
+    "name": "Learner register fields, validation and editing",
+    "viewport": "desktop",
+    "covers": [
+      "learner admission number",
+      "learner class and stream",
+      "boarder dormitory assignment",
+      "parent and guardian contact",
+      "unique admission number",
+      "learner editing persistence"
+    ],
+    "description": "Verifies requested learner register columns and persistence.",
+    "steps": [
+      "Open People; Students is selected by default",
+      "Add learner admission number, name, class, stream, parent and type",
+      "Assign a registered dormitory to a boarder",
+      "Save and verify register columns",
+      "Edit learner and save",
+      "Try duplicate admission number"
+    ],
+    "expected": "The register displays Admission No, Name, Type, Class, Stream, Dormitory, Parent, Status and Actions; edits persist and duplicate admission numbers are rejected."
+  },
+  {
+    "name": "Delete classes and blocks independently with confirmation",
+    "viewport": "desktop",
+    "covers": [
+      "class record deletion",
+      "block record deletion",
+      "independent child lists",
+      "destructive-action confirmation"
+    ],
+    "description": "Verifies independent class and block deletion.",
+    "steps": [
+      "Create and delete a test class",
+      "Verify unrelated classes remain",
+      "Create and delete a test block",
+      "Verify unrelated blocks remain"
+    ],
+    "expected": "Only the selected class or block is deleted after confirmation."
+  },
+  {
+    "name": "Download and restore a school database backup",
+    "viewport": "desktop",
+    "covers": [
+      "data backup export",
+      "backup restore merge by record ID"
+    ],
+    "description": "Checks backup export and non-destructive restore flow.",
+    "steps": [
+      "Open Data backup",
+      "Download a backup",
+      "Select the downloaded file",
+      "Confirm restore"
+    ],
+    "expected": "A JSON backup downloads and restore merges records without deleting unrelated current records."
+  }
+]
